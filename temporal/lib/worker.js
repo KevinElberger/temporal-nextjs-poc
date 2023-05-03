@@ -1,4 +1,6 @@
 "use strict";
+// import { Worker } from '@temporalio/worker';
+// import * as activities from './activities';
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -23,15 +25,25 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// run().catch((err) => console.log(err));
+// async function run() {
+//   const worker = await Worker.create({
+//     workflowsPath: require.resolve('./workflows'),
+//     activities,
+//     taskQueue: 'hello-world',
+//   });
+//   // Start accepting tasks on the `tutorial` queue
+//   await worker.run();
+// }
 const worker_1 = require("@temporalio/worker");
 const activities = __importStar(require("./activities"));
 async function run() {
     // Step 1: Register Workflows and Activities with the Worker and connect to
     // the Temporal server.
     const worker = await worker_1.Worker.create({
-        workflowsPath: require.resolve("./workflows"),
+        workflowsPath: require.resolve('./workflows'),
         activities,
-        taskQueue: "hello-world",
+        taskQueue: 'hello-world',
     });
     // Worker connects to localhost by default and uses console.error for logging.
     // Customize the Worker by passing more options to create():
